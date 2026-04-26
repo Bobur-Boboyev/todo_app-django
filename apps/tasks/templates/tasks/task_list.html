@@ -6,12 +6,20 @@
   {% for task in tasks %}
     <li>
       {{ task.title }} -
+
       {% if task.completed %}
         ✅ Done
       {% else %}
         ❌ Not done
       {% endif %}
+
+      | <a href="/update/{{ task.id }}/">Edit</a>
+      | <a href="/delete/{{ task.id }}/">Delete</a>
+      | <a href="/toggle/{{ task.id }}/">
+          {% if task.completed %}Undo{% else %}Done{% endif %}
+        </a>
     </li>
+
   {% empty %}
     <li>No tasks yet</li>
   {% endfor %}
